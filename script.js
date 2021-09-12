@@ -1,92 +1,73 @@
-const api = "https://newsapi.org/v2/top-headlines?country=ma&apiKey=5b438e69b36542379bf7f41be38b6070";
-async function getData(){
-    const res = await fetch(api)
+const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1'
+const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
+const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="'
+
+const main = document.getElementById('main')
+const form = document.getElementById('form')
+const search = document.getElementById('search')
+
+// Get initial movies
+getMovies(API_URL)
+
+async function getMovies(url) {
+    const res = await fetch(url)
     const data = await res.json()
+
+    showMovies(data.results)
     console.log(data)
-        document.querySelector("#container img").src = data.articles[0].urlToImage;
-        document.querySelector("#container h5").innerHTML += data.articles[0].title;
-        document.querySelector("#container h4").innerHTML += data.articles[0].publishedAt;
-
-        document.querySelector("#container1 img").src = data.articles[1].urlToImage;
-        document.querySelector("#container1 h5").innerHTML += data.articles[1].title;
-        document.querySelector("#container1 h4").innerHTML += data.articles[1].publishedAt;
-
-        document.querySelector("#container2 img").src = data.articles[2].urlToImage;
-        document.querySelector("#container2 h5").innerHTML += data.articles[2].title;
-        document.querySelector("#container2 h4").innerHTML += data.articles[2].publishedAt;
-
-        document.querySelector("#container3 img").src = data.articles[3].urlToImage;
-        document.querySelector("#container3 h5").innerHTML += data.articles[3].title;
-        document.querySelector("#container3 h4").innerHTML += data.articles[3].publishedAt;
-
-        document.querySelector("#container4 img").src = data.articles[4].urlToImage;
-        document.querySelector("#container4 h5").innerHTML += data.articles[4].title;
-        document.querySelector("#container4 h4").innerHTML += data.articles[4].publishedAt;
-
-        document.querySelector("#container5 img").src = data.articles[5].urlToImage;
-        document.querySelector("#container5 h5").innerHTML += data.articles[5].title;
-        document.querySelector("#container5 h4").innerHTML += data.articles[5].publishedAt;
-
-        document.querySelector("#container6 img").src = data.articles[6].urlToImage;
-        document.querySelector("#container6 h5").innerHTML += data.articles[6].title;
-        document.querySelector("#container6 h4").innerHTML += data.articles[6].publishedAt;
-
-        document.querySelector("#container7 img").src = data.articles[7].urlToImage;
-        document.querySelector("#container7 h5").innerHTML += data.articles[7].title;
-        document.querySelector("#container7 h4").innerHTML += data.articles[7].publishedAt;
-
-        document.querySelector("#container8 img").src = data.articles[8].urlToImage;
-        document.querySelector("#container8 h5").innerHTML += data.articles[8].title;
-        document.querySelector("#container8 h4").innerHTML += data.articles[8].publishedAt;
-
-        document.querySelector("#container9 img").src = data.articles[9].urlToImage;
-        document.querySelector("#container9 h5").innerHTML += data.articles[9].title;
-        document.querySelector("#container9 h4").innerHTML += data.articles[9].publishedAt;
-
-        document.querySelector("#container10 img").src = data.articles[10].urlToImage;
-        document.querySelector("#container10 h5").innerHTML += data.articles[10].title;
-        document.querySelector("#container10 h4").innerHTML += data.articles[10].publishedAt;
-
-        document.querySelector("#container11 img").src = data.articles[11].urlToImage;
-        document.querySelector("#container11 h5").innerHTML += data.articles[11].title;
-        document.querySelector("#container11 h4").innerHTML += data.articles[11].publishedAt;
-
-        document.querySelector("#container12 img").src = data.articles[12].urlToImage;
-        document.querySelector("#container12 h5").innerHTML += data.articles[12].title;
-        document.querySelector("#container12 h4").innerHTML += data.articles[12].publishedAt;
-
-        document.querySelector("#container13 img").src = data.articles[13].urlToImage;
-        document.querySelector("#container13 h5").innerHTML += data.articles[13].title;
-        document.querySelector("#container13 h4").innerHTML += data.articles[13].publishedAt;
-
-        document.querySelector("#container14 img").src = data.articles[14].urlToImage;
-        document.querySelector("#container14 h5").innerHTML += data.articles[14].title;
-        document.querySelector("#container14 h4").innerHTML += data.articles[14].publishedAt;
-
-        document.querySelector("#container15 img").src = data.articles[15].urlToImage;
-        document.querySelector("#container15 h5").innerHTML += data.articles[15].title;
-        document.querySelector("#container15 h4").innerHTML += data.articles[15].publishedAt;
-
-        document.querySelector("#container16 img").src = data.articles[16].urlToImage;
-        document.querySelector("#container16 h5").innerHTML += data.articles[16].title;
-        document.querySelector("#container16 h4").innerHTML += data.articles[16].publishedAt;
-
-        document.querySelector("#container17 img").src = data.articles[17].urlToImage;
-        document.querySelector("#container17 h5").innerHTML += data.articles[17].title;
-        document.querySelector("#container17 h4").innerHTML += data.articles[17].publishedAt;
-
-        document.querySelector("#container18 img").src = data.articles[18].urlToImage;
-        document.querySelector("#container18 h5").innerHTML += data.articles[18].title;
-        document.querySelector("#container18 h4").innerHTML += data.articles[18].publishedAt;
-        
-        document.querySelector("#container19 img").src = data.articles[19].urlToImage;
-        document.querySelector("#container19 h5").innerHTML += data.articles[19].title;
-        document.querySelector("#container19 h4").innerHTML += data.articles[19].publishedAt;
-
-
-
 }
 
+function showMovies(movies) {
+    main.innerHTML = ''
 
+    movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview , release_date } = movie
 
-getData()
+        const movieEl = document.createElement('div')
+        movieEl.classList.add('movie')
+
+        movieEl.innerHTML = `
+        <div class="card" style="width: 18rem; box-shadow:0px 0px 10px 1px rgb(26,26,26)">
+  <img src="${IMG_PATH + poster_path}" class="card-img-top" alt="${title}">
+  <div class="card-body">
+  <h2>${title}</h2>
+  ${overview}
+
+ 
+  </div>
+  <div align="right" ><svg style="transform : translateY(-10%); fill:#c67100;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+  <g>
+      <polygon points="256,372.686 380.83,448 347.809,305.934 458,210.409 312.733,197.934 256,64 199.257,197.934 54,210.409    164.192,305.934 131.161,448  "/>
+  </g>
+  </svg><span class="m-2"${getClassByRate(vote_average)}">${vote_average}</span><div align="left" style="float:left" class="m-2"><span>${release_date}</span></div></div>
+</div>
+<br>
+            
+        `
+        main.appendChild(movieEl)
+    })
+}
+
+function getClassByRate(vote) {
+    if(vote >= 8) {
+        return 'green'
+    } else if(vote >= 5) {
+        return 'orange'
+    } else {
+        return 'red'
+    }
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const searchTerm = search.value
+
+    if(searchTerm && searchTerm !== '') {
+        getMovies(SEARCH_API + searchTerm)
+
+        search.value = ''
+    } else {
+        window.location.reload()
+    }
+})
