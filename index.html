@@ -8,48 +8,108 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <link rel="icon" href="icon.png">
+
 <style>
   .img{
     width: 50px;
+   
   }
+  .navbItem{
+    fill : white;
+    background-color: #319f5f;
+    border-radius: 20px;
+    
+  }::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(202, 202, 202); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+border-radius : 50px;
+  background: #777; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #777; 
+}
 </style>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="box-shadow: 0px 10px 20px -10px rgb(44, 44, 44);">
+  <nav class="navbar navbar-light bg-light fixed-top" style="box-shadow: 0px 20px 20px -10px rgb(87, 87, 87);">
     <div class="container-fluid">
-      <img src="icon.png" width="30px">
-      <a class="navbar-brand" href="#">Forhess</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a href="#" onclick="window.location.reload()" class="nav-link">Home</a>
-          </li>
-        </ul>
-        
-        <form class="d-flex" id="form">
-          <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
-        </form>
-      </div>
+      <a class="navbar-brand" href="#">
+        <img src="icon.png" alt="" width="30px" height="30px" class="d-inline-block align-text-top">
+        Forhess
+      </a>
     </div>
   </nav>
-    <br>
-    <br>
-    <br>
+<br>
+<br>
+<br>
+  <form style="display: none;" class=" m-2" id="form">
+    <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search">
+  </form>
     <br>
 
+
     <div align="center" id="all" >
-     <div align="left">
-       <h1 class="m-2">Best 20 movie in this week!</h1>
+     <div align="center" id="title">
+       <h2 style=" border-radius: 50px; " class="m-2 bg-success p-2 text-white">Best 20 movies!</h2>
      </div>
      <br>
      <br>
-        <div id="main"></div>
-        
+
+
+    
+
+
+
+<div id="main"></div>
+
+<br>
+<br>
+<a href="#"><button style="position: fixed; right: 10px; bottom: -10px; transform: translateY(-250%); width: 50px; height: 50px;" id="up" class="btn btn-success rounded-circle"><svg style="fill: white; transform: translateY(0%);" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+  <g id="Icon_8_">
+      <g>
+          <path d="M277.375,427V167.296l119.702,119.702L427,256L256,85L85,256l29.924,29.922l119.701-118.626V427H277.375z"/>
+      </g>
+  </g>
+  </svg></button></a>
         
 </div>
+<nav id="navBottom" style="background-color: white; box-shadow: 0px -10px 20px -10px rgb(26, 26, 26); transform: translateY(1%) translateX(-1px); width: 101%; padding: 0px;"  class=" navbar navbar-expand-lg fixed-bottom " align="center" >
+  <div class="container-fluid p-2 ">
 
+     
+     
+ 
+      <svg class="nav-link active text-black navbItem"   onclick="home()" id="home" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="60px" height="60px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+          <g>
+              <path d="M256,112L96,240v208h112V320h96v128h112V240L256,112z"/>
+              <path d="M256,64l-96,76.8V96H96v95.999l-32,25.499l11.51,11.384L256,84.49l180.49,144.393L448,217.498L256,64z"/>
+          </g>
+          </svg>
+
+
+            <svg class="nav-link active text-black "   onclick="home2()" id="home2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="60px" height="60px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+              <g id="Icon_4_">
+                <g>
+                  <g>
+                    <g>
+                      <path d="M337.509,305.372h-17.501l-6.571-5.486c20.791-25.232,33.922-57.054,33.922-93.257      C347.358,127.632,283.896,64,205.135,64C127.452,64,64,127.632,64,206.629s63.452,142.628,142.225,142.628      c35.011,0,67.831-13.167,92.991-34.008l6.561,5.487v17.551L415.18,448L448,415.086L337.509,305.372z M206.225,305.372      c-54.702,0-98.463-43.887-98.463-98.743c0-54.858,43.761-98.742,98.463-98.742c54.7,0,98.462,43.884,98.462,98.742      C304.687,261.485,260.925,305.372,206.225,305.372z"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              </svg>
+
+  </div>
+ </nav>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
